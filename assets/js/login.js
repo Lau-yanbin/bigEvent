@@ -48,7 +48,7 @@ $(function () {
         //获取表单name属性的数据值
         let data = $(this).serialize();
         //发送axios请求
-        axios.post('http://ajax.frontend.itheima.net/api/reguser', data).then(function (res) {
+        axios.post('http://api-breakingnews-web.itheima.net/api/reguser', data).then(function (res) {
             //判断注册状态
             if (res.data.status !== 0) {
                 // 弹出 注册错误信息
@@ -69,7 +69,7 @@ $(function () {
         //获取表单name属性的数据值
         let data = $(this).serialize();
         //发送axios请求
-        axios.post('http://ajax.frontend.itheima.net/api/login', data).then(function (res) {
+        axios.post('http://api-breakingnews-web.itheima.net/api/login', data).then(function (res) {
             console.log(res);
             //判断注册状态
             if (res.data.status !== 0) {
