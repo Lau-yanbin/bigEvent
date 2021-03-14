@@ -6,7 +6,6 @@ $(function () {
         // 显示注册表单
         $('.reg-form').show();
     })
-
     // 登录表单
     $('#showLogin').click(function () {
         // 显示登录表单
@@ -32,7 +31,6 @@ $(function () {
                 return '两次密码不一致!!!';
             }
         }
-
         //我们既支持上述函数式的方式，也支持下述数组的形式
         //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
         , pass: [
@@ -59,9 +57,8 @@ $(function () {
             //触发登录表单
             $('#showLogin').click();
         })
-
     })
-
+    
     // 点击发送登录请求
     $('.login-form').on('submit', function (e) {
         // 阻止表单默认提交行为
