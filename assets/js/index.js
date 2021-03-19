@@ -1,4 +1,5 @@
-//
+
+// 初始化页面结构
 getUserInfo();
 function getUserInfo() {
     // 发送axios请求获取数据  渲染昵称和头像
@@ -25,6 +26,7 @@ function getUserInfo() {
         }
     })
 }
+
 $(function () {
     // 加载layer模块
     let layer = layui.layer;
@@ -35,7 +37,9 @@ $(function () {
             //do something
             // 确认退出 删除认证信息 'token', 并且返回登录页面
             localStorage.removeItem('token');
+            // 并且返回登录页面
             location.href = 'login.html';
+            // 关闭 询问框
             layer.close(index);
         });
     })

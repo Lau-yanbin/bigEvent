@@ -12,6 +12,36 @@ $(function () {
         // 当option创建添加到下拉框之后，手动更新form表单全部内容
         form.render();
     })
+    // 不仅要弹出层，而且还需要获取到对应Id这条数据信息填充到表单中
+    let sum = sessionStorage.getItem('id')
+
+    // let query = {
+    //     pagenum: 1, // 是	int	页码值
+    //     pagesize: 2, // 是	int	每页显示多少条数据
+    //     cate_id: "", // "" 所有的文章分类 否	string	文章分类的 Id
+    //     state: "", // "" 所有状态 文章状态  可选值有：已发布、草稿
+    // }
+
+    // 发送axios请求
+    axios.get('/my/article/' + sum, {
+        // 请求参数  query是参数变量
+        // params: query,
+    }).then(res => {
+        // 判断 响应状态
+        if (res.data.status !== 0) {
+            // 状态失败
+            return layer.msg(res.data.message);
+        }
+        // 把获取的数组存到临时变量
+        let str = res.data.data;
+        // 给对应的表单赋值
+        form.val("formTest", {
+            Id: str.Id,
+            title: str.title,
+            cate_id: str.cate_id,
+            content: str.content
+        });
+    })
     // 初始化富文本编辑器
     initEditor()
 
@@ -26,13 +56,14 @@ $(function () {
 
     // 3. 初始化裁剪区域
     $image.cropper(options)
+
     // 点击选择封面按钮 绑定上传文件
     $('#btnChooseCoverImage').on('click', function () {
         // 触发上传点击事件
         $('#fileCover').click();
     })
 
-    // 触发长传按钮的change事件
+    // 触发上传按钮的change事件
     // 当文件域的内容改变的时候，更换图片
     $('#fileCover').change(function () {
         // 1. 找到选择的图片（文件对象）
@@ -51,12 +82,11 @@ $(function () {
             .cropper(options)        // 重新初始化裁剪区域
     })
 
-    // 定义全局变量
-    let state;
-    // 点击已发布按钮 触发点击事件 修改state变量的值
+    let state; // 定义全局变量
     $('#btnPublish').click(() => state = '已发布')
-    // 点击草稿按钮 触发点击事件 修改state变量的值
+    // 点击已发布按钮 触发点击事件 修改state变量的值
     $('#btnSave').click(() => state = '草稿')
+    // 点击草稿按钮 触发点击事件 修改state变量的值
 
     // 触发表单submit事件
     $('form').on('submit', function (e) {

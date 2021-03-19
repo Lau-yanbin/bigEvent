@@ -20,8 +20,14 @@ $(function () {
     $('#file').on('change', function () {
         // 获取 用户选择的文件
         let file = this.files[0];
+        // 判断 用户是否选择图片
+        if (!file) {
+            // 如果没有选择图片就退出执行
+            return;
+        }
         // 根据选择的文件对象，生成一个临时的url，用于访问被选择的图片
         let newImgURL = URL.createObjectURL(file);
+        // 3. 更换剪裁区的图片的src属性
         // 先`销毁`旧的裁剪区域，再`重新设置图片路径`，之后再`创建新的裁剪区域`：
         $image
             .cropper('destroy')      // 销毁旧的裁剪区域

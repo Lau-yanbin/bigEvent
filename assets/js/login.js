@@ -67,7 +67,6 @@ $(function () {
         let data = $(this).serialize();
         //发送axios请求
         axios.post('/api/login', data).then(function (res) {
-            console.log(res);
             //判断注册状态
             if (res.data.status !== 0) {
                 // 弹出 注册错误信息
