@@ -105,7 +105,7 @@ $(function () {
                 // 创建(获取)表单数据的序列化(将数据编译成键值对)
                 let fd = new FormData(this)
                 // 手动添加表单的cover_img的属性并赋值
-                fd.append('cover_img', blob);
+                fd.append('linkicon', );
                 // 手动添加表单的state的属性并赋值
                 fd.append('state', state);
 
